@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>calculator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=0.5">
+        <meta name="viewport" content="width=device-width, initial-scale=0.2">
         <style>
             body {
                 background: #1E1E1E;
@@ -10,13 +10,24 @@
             button {
                 border-style: hidden;
                 font-family: 'Courier New', Courier, monospace;
-                font-size: large;
+                font-size: 15px;
+                touch-action: manipulation;
+            }
+            
+
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+
             }
 
-
             .mainRectangle {
+                /*width: 501px;
+                height: 918px;
+                */
                 width: 31.3125rem;
-                height: 57.375rem;
+                height: 45rem;
                 left: 21px;
                 top: 21px;
                 
@@ -26,6 +37,26 @@
                 background: #B5838D;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 22px;
+                /*
+                max-width: 450px;
+                width: 100vw;
+                
+                height: 90vh;
+                max-height: 57.375rem;
+                
+                width: 90%;
+                padding-top: 20.25%;
+                max-height: 50vh;
+                max-width: 400px;
+                /*
+                left: 5vw;
+                top: 5vh;
+                
+                position: relative;
+                background: #B5838D;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 22px;
+                */
                 
             }
 
@@ -34,9 +65,15 @@
                 background: #FFCDB2;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 color: #1E1E1E;
-                top: 350px;
+                /*
+                top: 10vh;
                 margin: 5px;
                 
+                width: 10vh;
+                height: 10vh;
+                */
+                top: 170px;
+                margin: 5px;
                 
                 
             }
@@ -51,41 +88,58 @@
             
             }
             .numbers {
-                text-align: center;
+                
+                
+                
                 display: inline-block;
-                margin-bottom: 200px;
+                margin-bottom: 0px;
             }
             .symbols {
 
                 /*position: relative;*/
                 text-align: center;
+                
                 /*top: 100px;*/
                 width: 100%;
+                
                 display: inline-block;
             }
             .numbers .firstThree {
-                top: 200px;
+                /*
+                display: flex; Use flexbox to arrange the elements 
+                justify-content: space-between; /* Spread the elements evenly with space in between 
+                */
                 text-align: center;
-               /* width: 75%; */
+                width: 75%; 
                display: inline-block;
+               width: 100%;
 
             }
             .numbers .secondThree {
+                
                 text-align: center;
+                
                 display: inline-block;
+                width: 100%;
             }
             .numbers .thirdThree {
+                
                 text-align: center;
+                
                 display: inline-block;
+                width: 100%;
             }
             .numbers .last {
-                text-align: center;
+                
+                text-align: center; 
                 display: inline-block;
+                width: 100%;
             }
             .one {
-               
+                
                 width: 89px;
                 height: 89px;
+                
                 display: inline-block;
                 /*left: 50px;
                 top: 486px;*/
@@ -186,7 +240,7 @@
                 border-radius: 20px;
             }
 
-            .negative {
+            .mod {
                 width: 94px;
                 height: 83px;
                 /*
@@ -207,7 +261,7 @@
                 display: inline-block;
                 margin: 7px 3px !important;
             }
-            .percent {
+            .carrot {
                 width: 93px;
                 height: 83px;
                 /*
@@ -292,25 +346,52 @@
             }
             .answer {
                 position: absolute;
-                right: 0%;
-                top: 199px;
+                left: 47px;
+               
                 font-family: 'Space Grotesk';
                 font-style: normal;
                 font-weight: 300;
-                font-size: 128px;
-                line-height: 163px;
-                display: flex;
+                font-size: 110px;
+                line-height: 200px;
+                display: inline-block;
                 text-align: right;
-                margin-right: 27px;
+                width: 80%;
+                overflow: auto;
+                scrollbar-color: transparent transparent;
+                scrollbar-width: thin;
                 color: #FFCDB2;
+                top: 30px;
 
             }
+            
+
+            .answer::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+
+            .answer::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            }
+  
             .question {
+                position: absolute;
+                top: 10px;
+                left: 10px;
                 padding: 10px;
                 font-family: 'Courier New', Courier, monospace;
-                
+                display: inline;
+                overflow: auto;
+                width: 90%;
+
 
             }
+            
+            .question::webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+            
 
 
         </style>
@@ -326,10 +407,10 @@
             
             <div class="numbers">
                 <div class ="symbols">
-                    <button id="negative" class="negative">+/-</button>
-                    <button onclick="clearResult()" id="clear" class="clear">Clear</button>
-                    <button id="percent" class="percent">%</button>
-                    <button onclick="appendResult('/')" id="divide" class="divide">%</button>
+                    <button onclick="appendResult('%')" id="mod" class="mod">%</button>
+                    <button onclick="clearResult(); clearQuestion()" id="clear" class="clear">Clear</button>
+                    <button onclick="appendResult('**')" id="carrot" class="carrot">^</button>
+                    <button onclick="appendResult('/')" id="divide" class="divide">/</button>
                     <!-- symbol buttons  <button onclick="appendResult('*')" id="multiply" class="multiply">x</button>
                     <button onclick="appendResult('-')" id="minus" class="minus">-</button>
                     <button onclick="appendResult('+')" id="add" class="add">+</button>
@@ -365,10 +446,17 @@
         </div>
     
         <script>
-            // if result is given, only add/multiply... to it, don't let it add more numbers
-            // numbers exceed screen size
-            // display numbers as you type
-            // negative/percent
+            // if result is given, only add/multiply... to it, don't let it add more numbers --> figure this out last
+            // numbers exceed screen size --> done
+            // display numbers as you type --> done
+            // negative/percent --> no need for negative, minus sign does it
+                // what would percent do? --> instead do modulus? or factorial or carrot?
+                // --> replace negative with factorial, % with carrot
+            // disable double tap zoom
+            // make buttons have animation/color changed when pressed
+            // add keyboard functionality for parenthesis
+
+
 
             // have a string called result
             var result = "";
@@ -379,12 +467,12 @@
                 console.log(result);
 
                 //display the question
-                var newQuestion = document.createElement("div");
+                var newQuestion = document.getElementById("question");
                 newQuestion.textContent = result;
 
-                var contain = document.getElementById("question");
-                contain.textContent = ""; // Clear the contents of the element
-                contain.appendChild(newQuestion);
+                //var contain = document.getElementById("question");
+                //contain.textContent = ""; // Clear the contents of the element
+                //contain.appendChild(newQuestion);
             }
             
             // when equals is hit, use eval() to calculate result
@@ -422,8 +510,21 @@
                 result = "";
                 console.log("clear");
                 console.log(result);
-            }
+                var container = document.getElementById("answer");
+                var oldElem = container.firstChild;
 
+                if (oldElem) {
+                    container.removeChild(oldElem);
+                }
+
+                
+            }
+            
+
+            function clearQuestion() {
+                var clearQuestion = document.getElementById("question");
+                clearQuestion.textContent = result;
+            }
             document.addEventListener('keydown', function(event) {
                 var key = event.key;
                 
@@ -431,12 +532,17 @@
 
                 if (key == "1" || key == "2" || key == "3" || key == "4" || key == "5" 
                 || key == "6" || key == "7" || key == "8" || key == "9" || key == "0"
-                || key == "+" || key == "*" || key == "-" || key == "/") {
+                || key == "+" || key == "*" || key == "-" || key == "/"
+                || key == "(" || key ==")" || key == "%") {
                     appendResult(key);
                 }
                 if (key == "Enter"){
                     calc();
                     console.log("calculating");
+                }
+                if (key == "^") {
+                    appendResult("**");
+                    
                 }
                 
 
