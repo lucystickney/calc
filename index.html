@@ -392,7 +392,42 @@
                 width: 0;
                 height: 0;
             }
-            
+
+
+            @media (max-width: 500px) {
+            /* Styles for smaller screens */
+                .question {
+                    top: 5px;
+                    left: 5px;
+                    padding: 5px;
+                    width: 90%;
+                }
+                .answer {
+                    
+                    left: 47px;
+                    font-weight: 300;
+                    font-size: 50px;
+                    line-height: normal;
+                    top: 30px;
+
+                }
+                .decimal, .equals, .add, .minus, .multiply, .divide, .carrot, .clear, .mod {
+                    width: 54px;
+                    height: 47px;
+                }
+                .mod, .clear, .carrot, .divide {
+                    margin: 5px 3px !important;
+                }
+                .nine, .eight, .seven, .six, .five, .four, .three, .two, .one {
+                    width: 51px;
+                    height: 52px;
+                }
+                .mainRectangle {
+                    width: 289px;
+                    height: 530px;
+                }
+            }
+                        
 
 
         </style>
